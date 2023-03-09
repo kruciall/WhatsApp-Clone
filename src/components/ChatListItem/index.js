@@ -1,27 +1,26 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
-import React, { Component } from 'react';
+import React from 'react';
 
-export class ChatListItem extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        {/* Image  */}
-        <Image style={styles.image}   source={{
-          uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/lukas.jpeg",
-        }} />
+const ChatListItem = ({ chat }) => {
+  return (
+    <View style={styles.container}>
+      {/* Image  */}
+      <Image style={styles.image} source={{
+        uri: chat.user.image,
+      }} />
 
-        {/* Content Container */}
-        <View style={styles.content}>
-          <View style={styles.row}>
-            <Text style={styles.name}>Vinson</Text>
-            <Text style={styles.subTitle}>06:30</Text>
-          </View>
-          <Text style={styles.subTitle}>Did you get my resume?</Text>
+      {/* Content Container */}
+      <View style={styles.content}>
+        <View style={styles.row}>
+          <Text numberOfLines={1} style={styles.name}>{chat.user.name}</Text>
+          <Text style={styles.subTitle}>{chat.lastMessage.createdAt}</Text>
         </View>
+        <Text numberOfLines={2} style={styles.subTitle}>{chat.lastMessage.text}</Text>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {
